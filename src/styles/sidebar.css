@@ -1,0 +1,17 @@
+.sidebar {
+  grid-area: sidebar;
+  height: fit-content;
+  padding: 0.5rem 1rem;
+}
+
+.sidebar-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.color-selection-checkbox,
+.sort-selection-radio {
+  display: flex;
+  flex-direction: column;
+}

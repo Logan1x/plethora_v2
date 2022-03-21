@@ -1,0 +1,120 @@
+.container-hero {
+  padding: 20px;
+  font-size: 1.5em;
+  text-align: center;
+  grid-area: main;
+  margin: auto 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-card-4 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.hero-card-banner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: fit-content;
+  border: 4px solid var(--color-foreground);
+  border-radius: 0.3rem;
+}
+
+.hero-card-banner img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.hero-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: "Abril Fatface", cursive;
+  margin: 1rem 0.5rem;
+  color: var(--color-text);
+}
+
+.hero-title h1 {
+  margin: 1rem auto;
+}
+
+.hero-btn {
+  font-size: 1.8rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  padding: 0.7rem 1.2rem;
+  background-color: var(--color-text);
+  color: var(--color-background);
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.3rem;
+  text-decoration: none;
+}
+
+.hero-card-2 {
+  display: flex;
+  justify-content: space-between;
+  /* flex-wrap: wrap; */
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0rem;
+  gap: 1rem;
+}
+
+.hero-card-new-arrivals {
+  background-color: var(--color-card-bg);
+  border-radius: 0.3rem;
+  color: var(--color-card-fg);
+  padding: 1rem;
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: space-around;
+  align-items: center;
+  max-width: fit-content;
+  cursor: pointer;
+}
+
+.hero-card-new-arrivals img {
+  width: 12.5rem;
+  height: 12.5rem;
+  margin: 0.5rem;
+  border-radius: 0.3rem;
+  object-fit: cover;
+  box-shadow: 1px 1px 3px 0px #ffffff;
+}
+
+.card-new-arrivals-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: left;
+  width: 100%;
+  padding: 1rem;
+  font-size: medium;
+}
+
+.card-new-arrivals-content p {
+  margin: 0.2rem 0.5rem;
+}
+
+.card-new-arrivals-caption {
+  font-size: 1.2rem;
+}
+
+.card-new-arrivals-title {
+  font-weight: bold;
+  font-size: 1.6rem;
+  padding: 0.5rem 0;
+}
+
+.card-text-bottom {
+  margin-top: auto;
+}
