@@ -6,7 +6,7 @@ export default function nav() {
       <div className="nav-title">
         <p>
           <a href="/"> Plethora </a>
-          <span className="text-sm">v1.0</span>
+          <span className="text-sm">v2.0</span>
         </p>
       </div>
       <div className="nav-search">

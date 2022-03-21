@@ -63,53 +63,12 @@ export default function Products() {
       <main className="container-pages">
         <h3 className="product-title-left">Showing All Results...</h3>
         <div className="product-card-parent">
-          {/* <div className="product-card">
-            <div className="product-img">
-              <img src="../assets/productImage1.jpg" alt="" />
-            </div>
-            <div className="product-details">
-              <h3>Adult Leisure MTB Cycle</h3>
-              <div className="product-price-rating">
-                <div className="product-price">
-                  <span>$100</span>
-                </div>
-                <div className="product-rating">
-                  <span>
-                    4.2/5{" "}
-                    <span>
-                      <i className="fas fa-star"></i>
-                    </span>
-                  </span>
-                </div>
-              </div>
-              <div className="product-btn">
-                <button>Add to Wishlist</button>
-              </div>
-              <div className="product-btn product-go-to-cart">
-                <button>Go to Cart</button>
-              </div>
-            </div>
-            <div className="product-wishlist">
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                ></path>
-              </svg>
-            </div>
-          </div> */}
-
           {products &&
             products.map((product) => (
               <div className="product-card" key={product.id}>
+                <div className="product-img">
+                  <img src={product.imgSrc} alt="" />
+                </div>
                 <div className="product-details">
                   <h3>{product.title}</h3>
                   <div className="product-price-rating">
@@ -118,7 +77,7 @@ export default function Products() {
                     </div>
                     <div className="product-rating">
                       <span>
-                        4.2/5{" "}
+                        {product.rating}/5{" "}
                         <span>
                           <i className="fas fa-star"></i>
                         </span>
