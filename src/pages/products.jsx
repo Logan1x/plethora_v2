@@ -1,98 +1,15 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useReducer } from "react";
+import { useDataContext } from "../contexts/dataContext";
+import { useFilterHook } from "../hooks/filterHook";
 
 export default function Products() {
-  const [products, setProducts] = useState([]);
+  const { state, dispatch } = useDataContext();
+  const { filteredData } = useFilterHook();
 
-  const getData = async () => {
-    try {
-      const response = await axios.get("/api/products");
-      // console.log(response.data);
-      setProducts(response.data.products);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const reducerFunc = (state, action) => {
-    switch (action.type) {
-      case "SORT_BY":
-        return { ...state, sortBy: action.payload };
-      case "FILTER_BY_RATING":
-        return { ...state, filterByRating: action.payload };
-      case "FILTER_BY_PRICE_RANGE":
-        return { ...state, filterByPriceRange: Number(action.payload) };
-      // case "FILTER_BY_COLOR":
-      //   return { ...state, filterByColor: [...filterByColor, action.payload] };
-      case "CLEAR_FILTER":
-        return { ...state, filterByRating: null, sortBy: null };
-      default:
-        return state;
-    }
-  };
-
-  const [state, dispatch] = useReducer(reducerFunc, {
-    sortBy: null,
-    filterByRating: null,
-    filterByPriceRange: 15000,
-    // filterByColor: [],
-  });
-
-  const getSortedData = (data, sortBy) => {
-    if (sortBy === "HIGH_TO_LOW") {
-      return [...data].sort((a, b) => b.price - a.price);
-    } else if (sortBy === "LOW_TO_HIGH") {
-      return [...data].sort((a, b) => a.price - b.price);
-    } else {
-      return data;
-    }
-  };
-
-  const filterByRating = (data, filterByRating) => {
-    if (filterByRating === "4_AND_ABOVE") {
-      return data.filter((product) => Number(product.rating) >= 4);
-    } else if (filterByRating === "3_AND_ABOVE") {
-      return data.filter((product) => Number(product.rating) >= 3);
-    } else if (filterByRating === "2_AND_ABOVE") {
-      return data.filter((product) => Number(product.rating) >= 2);
-    } else if (filterByRating === "1_AND_ABOVE") {
-      return data.filter((product) => Number(product.rating) >= 1);
-    } else {
-      return data;
-    }
-  };
-
-  const filterByPriceRange = (data, filterByPriceRange) => {
-    if (filterByPriceRange) {
-      return data.filter(
-        (product) => Number(product.price) <= Number(filterByPriceRange)
-      );
-    } else {
-      return data;
-    }
-  };
-
-  // const filterByColor = (data, filterByColor) => {
-  //   console.log(filterByColor);
-  //   return data;
-  // };
-
-  const sortedData = getSortedData(products, state.sortBy);
-  let filteredData = filterByRating(sortedData, state.filterByRating);
-  filteredData = filterByPriceRange(filteredData, state.filterByPriceRange);
-  // filterByColor(filteredData, state.filterByColor);
-
-  const maxValue = products.reduce(
+  const maxValue = state.data.reduce(
     (acc, curr) => (Number(curr.price) > acc ? (acc = curr.price) : acc),
     0
   );
-
-  // console.log(maxValue);
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   return (
     <div className="container-aside-layout">
@@ -107,58 +24,6 @@ export default function Products() {
           </p>
         </div>
 
-        {/* ---------------------uncomment to add color catagory */}
-
-        {/*
-        <div>
-          <h4>Color</h4>
-          <form className="color-selection-checkbox">
-             <div>
-              <input
-                type="checkbox"
-                id="black"
-                name="black"
-                onChange={() =>
-                  dispatch({ type: "FILTER_BY_COLOR", payload: "COLOR_BLACK" })
-                }
-              />
-              <label htmlFor="black">black</label>
-            </div> 
-            <div>
-              <input
-                type="checkbox"
-                id="gray"
-                name="gray"
-                onChange={() =>
-                  dispatch({ type: "FILTER_BY_COLOR", payload: "COLOR_GRAY" })
-                }
-              />
-              <label htmlFor="gray">gray</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="blue"
-                name="blue"
-                onChange={() =>
-                  dispatch({ type: "FILTER_BY_COLOR", payload: "COLOR_BLUE" })
-                }
-              />
-              <label htmlFor="blue">blue</label>
-            </div>
-            <div>
-              <input
-                type="checkbox"
-                id="green"
-                name="green"
-                onChange={() =>
-                  dispatch({ type: "FILTER_BY_COLOR", payload: "COLOR_GREEN" })
-                }
-              />
-              <label htmlFor="green">green</label>
-            </div>
-          </form>
-        </div>*/}
         <div>
           <h4>Price</h4>
           <div className="price-range-slider">
@@ -174,8 +39,8 @@ export default function Products() {
             type="range"
             min="1"
             value={state.filterByPriceRange}
-            max={maxValue}
-            class="slider"
+            max="15000"
+            className="slider"
             id="myRange"
             onChange={(e) =>
               dispatch({
