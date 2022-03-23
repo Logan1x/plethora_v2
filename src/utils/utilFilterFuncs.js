@@ -1,4 +1,4 @@
-const getSortedData = (data, sortBy) => {
+export const getSortedData = (data, sortBy) => {
   if (sortBy === "HIGH_TO_LOW") {
     return [...data].sort((a, b) => b.price - a.price);
   } else if (sortBy === "LOW_TO_HIGH") {
@@ -8,7 +8,7 @@ const getSortedData = (data, sortBy) => {
   }
 };
 
-const filterByRating = (data, filterByRating) => {
+export const filterByRating = (data, filterByRating) => {
   if (filterByRating === "4_AND_ABOVE") {
     return data.filter((product) => Number(product.rating) >= 4);
   } else if (filterByRating === "3_AND_ABOVE") {
@@ -22,7 +22,7 @@ const filterByRating = (data, filterByRating) => {
   }
 };
 
-const filterByPriceRange = (data, filterByPriceRange) => {
+export const filterByPriceRange = (data, filterByPriceRange) => {
   if (filterByPriceRange) {
     return data.filter(
       (product) => Number(product.price) <= Number(filterByPriceRange)
@@ -31,5 +31,3 @@ const filterByPriceRange = (data, filterByPriceRange) => {
     return data;
   }
 };
-
-export { getSortedData, filterByRating, filterByPriceRange };

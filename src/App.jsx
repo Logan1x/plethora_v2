@@ -6,6 +6,8 @@ import Mockman from "mockman-js";
 import Nav from "./components/nav";
 import Home from "./pages/home";
 import Products from "./pages/products";
+import Login from "./pages/login";
+import Signup from "./pages/signup";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/mockman" element={<Mockman />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </div>
   );

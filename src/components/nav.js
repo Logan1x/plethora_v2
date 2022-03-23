@@ -1,6 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function nav() {
+import { useAuth } from "../contexts/authContext";
+
+export default function Nav() {
+  const { token, logoutHandler } = useAuth();
+
   return (
     <nav className="nav">
       <div className="nav-title">
@@ -26,9 +31,15 @@ export default function nav() {
         </svg>
       </div>
       <div className="nav-pills">
-        <a href="/auth/login.html" className=" btn-filled">
-          Login
-        </a>
+        {token ? (
+          <a onClick={logoutHandler} className=" btn-filled">
+            Logout
+          </a>
+        ) : (
+          <Link to="/login" className=" btn-filled">
+            Login
+          </Link>
+        )}
         <a className="alert-badge" href="/pages/wishlist.html">
           <svg
             className="nav-badge-icon"

@@ -12,7 +12,7 @@ export default function sidebar() {
         <form class="color-selection-checkbox">
           <div>
             <input type="checkbox" id="red" name="red" />
-            <label for="red">red</label>
+            <label htmlFor="red">red</label>
           </div>
           <div>
             <input type="checkbox" id="orange" name="orange" />
@@ -20,11 +20,11 @@ export default function sidebar() {
           </div>
           <div>
             <input type="checkbox" id="blue" name="blue" />
-            <label for="blue">blue</label>
+            <label htmlFor="blue">blue</label>
           </div>
           <div>
             <input type="checkbox" id="green" name="green" />
-            <label for="green">green</label>
+            <label htmlFor="green">green</label>
           </div>
         </form>
       </div>
@@ -37,7 +37,7 @@ export default function sidebar() {
           </div>
           <div>
             <input type="radio" id="priceLow" name="sort" />
-            <label for="priceLow">Price: Low to High</label>
+            <label htmlFor="priceLow">Price: Low to High</label>
           </div>
         </form>
       </div>

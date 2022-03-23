@@ -4,7 +4,7 @@
 @import url(./styles/nav.css);
 @import url(./styles/sidebar.css);
 @import url(./styles/hero.css);
-/* @import url(./styles/auth.css); */
+@import url(./styles/auth.css);
 @import url(./styles/products.css);
 @import url(./styles/cart.css);
 

@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import { useDataContext } from "../contexts/dataContext";
 import { useFilterHook } from "../hooks/filterHook";
 
@@ -142,7 +141,7 @@ export default function Products() {
             filteredData.map((product) => (
               <div className="product-card" key={product.id}>
                 <div className="product-img">
-                  <img src={product.imgSrc} alt="product-image" />
+                  <img src={product.imgSrc} alt="product" />
                 </div>
                 <div className="product-details">
                   <h3>{product.title}</h3>
