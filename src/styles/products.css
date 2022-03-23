@@ -97,3 +97,16 @@
 .product-wishlist-added {
   color: var(--color-alert-bg);
 }
+
+.price-range-slider {
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider {
+  width: 100%;
+}
+
+.clear-btn {
+  cursor: pointer;
+}
