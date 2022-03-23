@@ -13,8 +13,8 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="products" element={<Products />} />
-        <Route path="mockman" element={<Mockman />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/mockman" element={<Mockman />} />
       </Routes>
     </div>
   );
