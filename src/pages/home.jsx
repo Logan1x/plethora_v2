@@ -7,7 +7,7 @@ export default function Home() {
       <div className="hero-card-banner">
         <img
           src="https://plethora-project.netlify.app/assets/hero-image.jpg"
-          alt=""
+          alt="homepage-banner"
         />
       </div>
       <div className="hero-title">
@@ -22,7 +22,7 @@ export default function Home() {
           <div>
             <img
               src="https://plethora-project.netlify.app/assets/cycle-new-arrival-1.jpg"
-              alt=""
+              alt="kids-cycle"
             />
           </div>
           <div className="card-new-arrivals-content">
@@ -37,7 +37,7 @@ export default function Home() {
           <div>
             <img
               src="https://plethora-project.netlify.app/assets/cycle-new-arrival-3.jpeg"
-              alt=""
+              alt="kids-tricycle"
             />
           </div>
           <div className="card-new-arrivals-content">

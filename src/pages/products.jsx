@@ -142,7 +142,7 @@ export default function Products() {
             filteredData.map((product) => (
               <div className="product-card" key={product.id}>
                 <div className="product-img">
-                  <img src={product.imgSrc} alt="" />
+                  <img src={product.imgSrc} alt="product-image" />
                 </div>
                 <div className="product-details">
                   <h3>{product.title}</h3>
