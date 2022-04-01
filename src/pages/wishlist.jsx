@@ -1,47 +1,18 @@
 import { useDataContext } from "../contexts/dataContext";
-import { useFilterHook } from "../hooks/filterHook";
-import { useAuth } from "../contexts/authContext";
+import { useState, useEffect } from "react";
 
-import axios from "axios";
-
-export default function Products() {
+export default function Wishlist() {
   const { state, dispatch, postCartData } = useDataContext();
-  const { filteredData } = useFilterHook();
 
-  const { token } = useAuth();
+  const getWishlistData = () => state.wishlistData;
 
-  const maxValue = state.data.reduce(
-    (acc, curr) => (Number(curr.price) > acc ? (acc = curr.price) : acc),
-    0
-  );
+  const [wishlist, setWishlist] = useState([]);
 
-  const postWishlistData = async ({ _id, title, imgSrc, rating, price }) => {
-    console.log("inside postWishlistData");
-    try {
-      const response = await axios({
-        method: "POST",
-        headers: {
-          authorization: token,
-        },
-        url: "/api/user/wishlist",
-        data: JSON.stringify({
-          product: { _id, title, imgSrc, rating, price },
-        }),
-      });
+  const maxValue = 15000;
 
-      console.log(response.data);
-
-      if (response.status === 200 || response.status === 201) {
-        dispatch({
-          type: "SET_WISHLIST_DATA",
-          payload: response.data.wishlist,
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  useEffect(() => {
+    setWishlist(getWishlistData());
+  }, []);
   return (
     <div className="container-aside-layout">
       <aside className="sidebar">
@@ -166,11 +137,11 @@ export default function Products() {
       </aside>
       <main className="container-pages">
         <h3 className="product-title-left">
-          <span>Showing All Results</span> (found {filteredData.length} results)
+          <span>Showing All Results</span> (found {wishlist.length} results)
         </h3>
         <div className="product-card-parent">
-          {filteredData &&
-            filteredData.map((product) => (
+          {wishlist &&
+            wishlist.map((product) => (
               <div className="product-card" key={product.id}>
                 <div className="product-img">
                   <img src={product.imgSrc} alt="product" />
@@ -191,17 +162,17 @@ export default function Products() {
                     </div>
                   </div>
                   <div className="product-btn">
-                    <button
-                      onClick={() => postCartData(product, token, dispatch)}
-                    >
+                    <button onClick={() => postCartData(product)}>
                       Add to cart
                     </button>
                   </div>
+                  <div className="product-btn">
+                    <button onClick={() => postCartData(product)}>
+                      Remove from Wishlist
+                    </button>
+                  </div>
                 </div>
-                <div
-                  className="product-wishlist"
-                  onClick={() => postWishlistData(product)}
-                >
+                <div className="product-wishlist">
                   <svg
                     className="w-6 h-6"
                     fill="none"
@@ -221,6 +192,7 @@ export default function Products() {
             ))}
         </div>
       </main>
+      <script src="../nav.js"></script>
     </div>
   );
 }

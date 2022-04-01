@@ -4,12 +4,6 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <main className="container-hero">
-      <div className="hero-card-banner">
-        <img
-          src="https://plethora-project.netlify.app/assets/hero-image.jpg"
-          alt="homepage-banner"
-        />
-      </div>
       <div className="hero-title">
         <h1>Plethora🚴</h1>
         <p>Whole new world is waiting for you.</p>
@@ -17,6 +11,13 @@ export default function Home() {
           Go Find Out
         </Link>
       </div>
+      <div className="hero-card-banner">
+        <img
+          src="https://plethora-project.netlify.app/assets/hero-image.jpg"
+          alt="homepage-banner"
+        />
+      </div>
+
       <div className="hero-card-2">
         <div className="hero-card-new-arrivals">
           <div>

@@ -92,6 +92,7 @@
   right: 0;
   margin: 0.5rem;
   padding: 0.2rem;
+  cursor: pointer;
 }
 
 .product-wishlist-added {
