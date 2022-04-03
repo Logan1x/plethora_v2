@@ -28,6 +28,10 @@
   position: relative;
 }
 
+.cart-img{
+  max-width: 16rem;
+}
+
 .cart-img img {
   width: 100%;
   height: 100%;
@@ -134,4 +138,11 @@
   background-color: var(--color-foreground);
   color: var(--color-background);
   margin: 0.8rem 0rem;
+}
+
+.notFound-image{
+  width: 350px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.4rem 0 0 0.4rem;
 }

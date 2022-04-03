@@ -95,7 +95,7 @@
   cursor: pointer;
 }
 
-.product-wishlist-added {
+.wishlist-svg {
   color: var(--color-alert-bg);
 }
 

@@ -1,5 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
-import axios from "axios";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 
 import { dataReducerFunc, initialState } from "../reducer/dataReducer";
 import {
@@ -7,7 +12,12 @@ import {
   getCartData,
   getWishlistData,
   postCartData,
+  postWishlistData,
+  removeFromCartUtilFunc,
+  removeFromWishlistUtilFunc,
 } from "../utils/utilDataFuncs";
+
+import { notify } from "../utils/utilToastFuncs";
 import { useAuth } from "../contexts/authContext";
 
 const DataContext = createContext();
@@ -17,69 +27,34 @@ const DataProvider = ({ children }) => {
 
   const { token } = useAuth();
 
-  // const getData = async () => {
-  //   try {
-  //     const response = await axios.get("/api/products");
-  //     if (response.status === 200 || response.status === 201) {
-  //       return response.data;
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const removeFromCart = async (id) => {
+    try {
+      const response = await removeFromCartUtilFunc(id, token);
 
-  // const getCartData = async () => {
-  //   try {
-  //     const response = await axios.get("/api/user/cart", {
-  //       headers: {
-  //         authorization: token,
-  //       },
-  //     });
-  //     if (response.status === 200 || response.status === 201) {
-  //       console.log(response.data);
-  //       return response.data;
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+      if (response.status === 200 || response.status === 201) {
+        dispatch({ type: "SET_CART_DATA", payload: response.data.cart });
+        notify("Removed from cart!", "success", "🛒");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-  // const postCartData = async ({ _id, title, imgSrc, rating, price }) => {
-  //   try {
-  //     const response = await axios({
-  //       method: "POST",
-  //       headers: {
-  //         authorization: token,
-  //       },
-  //       url: "/api/user/cart",
-  //       data: JSON.stringify({
-  //         product: { _id, title, imgSrc, rating, price },
-  //       }),
-  //     });
+  const removeFromWishlist = async (id) => {
+    try {
+      const response = await removeFromWishlistUtilFunc(id, token);
 
-  //     if (response.status === 200 || response.status === 201) {
-  //       dispatch({ type: "SET_CART_DATA", payload: response.data.cart });
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // const getWishlistData = async () => {
-  //   try {
-  //     const response = await axios.get("/api/user/wishlist", {
-  //       headers: {
-  //         authorization: token,
-  //       },
-  //     });
-  //     if (response.status === 200 || response.status === 201) {
-  //       console.log(response.data);
-  //       return response.data;
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+      if (response.status === 200 || response.status === 201) {
+        dispatch({
+          type: "SET_WISHLIST_DATA",
+          payload: response.data.wishlist,
+        });
+        notify("Removed from wishlist!", "success", "❤️");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(async () => {
     const data = await getData();
@@ -91,11 +66,23 @@ const DataProvider = ({ children }) => {
 
       const wishlishData = await getWishlistData(token);
       dispatch({ type: "SET_WISHLIST_DATA", payload: wishlishData });
+    } else {
+      dispatch({ type: "SET_CART_DATA", payload: [] });
+      dispatch({ type: "SET_WISHLIST_DATA", payload: [] });
     }
   }, [token]);
 
   return (
-    <DataContext.Provider value={{ state, dispatch, postCartData }}>
+    <DataContext.Provider
+      value={{
+        state,
+        dispatch,
+        postCartData,
+        postWishlistData,
+        removeFromCart,
+        removeFromWishlist,
+      }}
+    >
       {children}
     </DataContext.Provider>
   );

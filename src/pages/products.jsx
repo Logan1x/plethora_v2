@@ -2,45 +2,29 @@ import { useDataContext } from "../contexts/dataContext";
 import { useFilterHook } from "../hooks/filterHook";
 import { useAuth } from "../contexts/authContext";
 
-import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Products() {
-  const { state, dispatch, postCartData } = useDataContext();
+  const { state, dispatch, postCartData, postWishlistData } = useDataContext();
   const { filteredData } = useFilterHook();
-
   const { token } = useAuth();
+
+  const checkInCart = (id) => {
+    if (state.cartData.length > 0) {
+      return state.cartData.find((item) => item._id === id);
+    }
+  };
+
+  const checkInWishlist = (id) => {
+    if (state.wishlistData.length > 0) {
+      return state.wishlistData.find((item) => item._id === id);
+    }
+  };
 
   const maxValue = state.data.reduce(
     (acc, curr) => (Number(curr.price) > acc ? (acc = curr.price) : acc),
     0
   );
-
-  const postWishlistData = async ({ _id, title, imgSrc, rating, price }) => {
-    console.log("inside postWishlistData");
-    try {
-      const response = await axios({
-        method: "POST",
-        headers: {
-          authorization: token,
-        },
-        url: "/api/user/wishlist",
-        data: JSON.stringify({
-          product: { _id, title, imgSrc, rating, price },
-        }),
-      });
-
-      console.log(response.data);
-
-      if (response.status === 200 || response.status === 201) {
-        dispatch({
-          type: "SET_WISHLIST_DATA",
-          payload: response.data.wishlist,
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <div className="container-aside-layout">
@@ -191,31 +175,52 @@ export default function Products() {
                     </div>
                   </div>
                   <div className="product-btn">
-                    <button
-                      onClick={() => postCartData(product, token, dispatch)}
-                    >
-                      Add to cart
-                    </button>
+                    {checkInCart(product._id) ? (
+                      <Link to="/cart">
+                        <button>Go to Cart</button>
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => postCartData(product, token, dispatch)}
+                      >
+                        Add to cart
+                      </button>
+                    )}
                   </div>
                 </div>
-                <div
-                  className="product-wishlist"
-                  onClick={() => postWishlistData(product)}
-                >
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                    ></path>
-                  </svg>
+                <div className="product-wishlist">
+                  {checkInWishlist(product._id) ? (
+                    <Link to="/wishlist">
+                      <svg
+                        fill="currentColor"
+                        className="wishlist-svg"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                    </Link>
+                  ) : (
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      onClick={() => postWishlistData(product, token, dispatch)}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                      ></path>
+                    </svg>
+                  )}
                 </div>
               </div>
             ))}

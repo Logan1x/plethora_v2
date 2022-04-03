@@ -1,4 +1,5 @@
 import axios from "axios";
+import { notify } from "./utilToastFuncs";
 
 export const getData = async () => {
   try {
@@ -7,7 +8,7 @@ export const getData = async () => {
       return response.data;
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -19,11 +20,10 @@ export const getCartData = async (token) => {
       },
     });
     if (response.status === 200 || response.status === 201) {
-      console.log(response.data);
       return response.data;
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -46,9 +46,11 @@ export const postCartData = async (
 
     if (response.status === 200 || response.status === 201) {
       dispatch({ type: "SET_CART_DATA", payload: response.data.cart });
+      notify("Added to cart!", "success", "🛒");
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    notify("Make sure you're logged in", "error");
   }
 };
 
@@ -60,10 +62,55 @@ export const getWishlistData = async (token) => {
       },
     });
     if (response.status === 200 || response.status === 201) {
-      console.log(response.data);
       return response.data;
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
+};
+
+export const postWishlistData = async (
+  { _id, title, imgSrc, rating, price },
+  token,
+  dispatch
+) => {
+  try {
+    const response = await axios({
+      method: "POST",
+      headers: {
+        authorization: token,
+      },
+      url: "/api/user/wishlist",
+      data: JSON.stringify({
+        product: { _id, title, imgSrc, rating, price },
+      }),
+    });
+
+    if (response.status === 200 || response.status === 201) {
+      dispatch({
+        type: "SET_WISHLIST_DATA",
+        payload: response.data.wishlist,
+      });
+      notify("Added to wishlist!", "success", "❤️");
+    }
+  } catch (error) {
+    console.error(error);
+    notify("Make sure you're logged in", "error");
+  }
+};
+
+export const removeFromCartUtilFunc = (id, token) => {
+  return axios.delete(`/api/user/cart/${id}`, {
+    headers: {
+      authorization: token,
+    },
+  });
+};
+
+export const removeFromWishlistUtilFunc = (id, token) => {
+  return axios.delete(`/api/user/wishlist/${id}`, {
+    headers: {
+      authorization: token,
+    },
+  });
 };

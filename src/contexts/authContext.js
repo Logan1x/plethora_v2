@@ -1,8 +1,8 @@
-import { createContext, useContext, useState } from "react";
-import { loginUtility } from "../utils/utilAuthFuncs";
 import { useNavigate } from "react-router-dom";
+import { createContext, useContext, useState } from "react";
 
-import toast from "react-hot-toast";
+import { loginUtility } from "../utils/utilAuthFuncs";
+import { notify } from "../utils/utilToastFuncs";
 
 const AuthContext = createContext();
 
@@ -12,20 +12,6 @@ const AuthProvider = ({ children }) => {
   const localStorageToken = JSON.parse(localStorage.getItem("loginItems"));
   const [token, setToken] = useState(localStorageToken?.token);
   const [currUser, setCurrUser] = useState(localStorageToken?.user);
-
-  const toastStyle = {
-    style: {
-      borderRadius: "10px",
-      background: "#333",
-      color: "#fff",
-    },
-  };
-
-  const notify = (msg, status) => {
-    status === "success"
-      ? toast.success(msg, toastStyle)
-      : toast.error(msg, toastStyle);
-  };
 
   const loginHandler = async (email, password) => {
     try {
