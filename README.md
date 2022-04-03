@@ -2,7 +2,7 @@
 
 # Plethora🚴 - Whole new world is waiting for you.
   
-[![Netlify Status](https://api.netlify.com/api/v1/badges/dbdfb677-55ad-472f-b894-9abef3c18eb0/deploy-status)](https://app.netlify.com/sites/plethora-project/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e653f0aa-87c7-4fcb-ba9b-6f498bebc5dd/deploy-status)](https://app.netlify.com/sites/plethora-v2/deploys)
 
 **Website URL: https://plethora-v2.netlify.app/**
 
@@ -39,8 +39,8 @@ This project is made out of HTML, CSS and ReactJS. **If you love to contribute, 
 ### This Project was made with help of these contributors
 
 <p align="center">
-        <a href="https://github.com/logan1x/plethora/graphs/contributors">
-                <img src="https://contributors-img.web.app/image?repo=logan1x/plethora" />
+        <a href="https://github.com/logan1x/plethora_v2/graphs/contributors">
+                <img src="https://contributors-img.web.app/image?repo=logan1x/plethora_v2" />
         </a>
 </p>
 
