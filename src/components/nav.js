@@ -64,11 +64,11 @@ export default function Nav() {
           )}
         </Link>
         {token ? (
-          <a onClick={logoutHandler} className=" btn-filled">
+          <a onClick={logoutHandler} className="btn-filled">
             Logout
           </a>
         ) : (
-          <Link to="/login" className=" btn-filled">
+          <Link to="/login" className="btn-filled">
             Login
           </Link>
         )}
