@@ -4,23 +4,18 @@ import { cartCheckoutNotify } from "../utils/utilCartWishFuncs";
 import notFoundImage from "../assets/undraw_refreshing_beverage_td3r.svg";
 
 export default function Cart() {
-  const { state, removeFromCart } = useDataContext();
+  const { state, removeFromCart, increaseItemQuantity, decreaseItemQuantity } =
+    useDataContext();
 
   const [cartData, setCartData] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
   const getCartData = () => state.cartData;
 
-  const checkInWishlist = (id) => {
-    if (state.wishlistData.length > 0) {
-      return state.wishlistData.find((item) => item._id === id);
-    }
-  };
-
   const getTotalPrice = () => {
     if (state.cartData.length > 0) {
       return state.cartData.reduce(
-        (acc, curr) => (acc += Number(curr.price)),
+        (acc, curr) => (acc += Number(curr.price) * Number(curr.qty)),
         0
       );
     }
@@ -63,11 +58,17 @@ export default function Cart() {
                               Quantity :
                             </p>
                             <div className="cart-quantity-btn">
-                              <button className="cart-quantity-btn-minus">
+                              <button
+                                className="cart-quantity-btn-minus"
+                                onClick={() => decreaseItemQuantity(item._id)}
+                              >
                                 -
                               </button>
-                              <input type="text" value="1" />
-                              <button className="cart-quantity-btn-plus">
+                              <input type="text" value={item.qty} />
+                              <button
+                                className="cart-quantity-btn-plus"
+                                onClick={() => increaseItemQuantity(item._id)}
+                              >
                                 +
                               </button>
                             </div>

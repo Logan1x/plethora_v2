@@ -177,7 +177,9 @@ export default function Products() {
                   <div className="product-btn">
                     {checkInCart(product._id) ? (
                       <Link to="/cart">
-                        <button>Go to Cart</button>
+                        <button className="product-go-to-cart">
+                          Go to Cart
+                        </button>
                       </Link>
                     ) : (
                       <button

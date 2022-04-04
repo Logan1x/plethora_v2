@@ -52,7 +52,9 @@ export default function Wishlist() {
                       <div className="product-btn">
                         {checkInCart(product._id) ? (
                           <Link to="/cart">
-                            <button>Go to cart</button>
+                            <button className="product-go-to-cart">
+                              Go to cart
+                            </button>
                           </Link>
                         ) : (
                           <button

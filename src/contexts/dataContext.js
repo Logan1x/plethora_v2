@@ -13,9 +13,14 @@ import {
   getWishlistData,
   postCartData,
   postWishlistData,
+} from "../utils/utilDataFuncs";
+
+import {
   removeFromCartUtilFunc,
   removeFromWishlistUtilFunc,
-} from "../utils/utilDataFuncs";
+  increaseCartItemQuantity,
+  decreaseCartItemQuantity,
+} from "../utils/utilCartWishFuncs";
 
 import { notify } from "../utils/utilToastFuncs";
 import { useAuth } from "../contexts/authContext";
@@ -37,6 +42,7 @@ const DataProvider = ({ children }) => {
       }
     } catch (err) {
       console.error(err);
+      notify("Error removing from cart", "error");
     }
   };
 
@@ -53,6 +59,35 @@ const DataProvider = ({ children }) => {
       }
     } catch (err) {
       console.error(err);
+      notify("Error removing from wishlist", "error");
+    }
+  };
+
+  const increaseItemQuantity = async (id) => {
+    try {
+      const response = await increaseCartItemQuantity(id, token);
+
+      if (response.status === 200 || response.status === 201) {
+        dispatch({ type: "SET_CART_DATA", payload: response.data.cart });
+        notify("Increased quantity!", "success", "🛒");
+      }
+    } catch (err) {
+      console.error(err);
+      notify("Error increasing quantity", "error");
+    }
+  };
+
+  const decreaseItemQuantity = async (id) => {
+    try {
+      const response = await decreaseCartItemQuantity(id, token);
+
+      if (response.status === 200 || response.status === 201) {
+        dispatch({ type: "SET_CART_DATA", payload: response.data.cart });
+        notify("Decreased quantity!", "success", "🛒");
+      }
+    } catch (err) {
+      console.error(err);
+      notify("Error decreasing quantity", "error");
     }
   };
 
@@ -81,6 +116,8 @@ const DataProvider = ({ children }) => {
         postWishlistData,
         removeFromCart,
         removeFromWishlist,
+        increaseItemQuantity,
+        decreaseItemQuantity,
       }}
     >
       {children}

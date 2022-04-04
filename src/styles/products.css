@@ -74,11 +74,7 @@
   height: 1.5rem;
 }
 
-.product-go-to-cart button {
-  width: 100%;
-  margin: 0.5rem 0;
-  padding: 0.5rem 0.7rem;
-  border: none;
+.product-go-to-cart {
   background-color: var(--color-foreground);
   color: var(--color-background);
 }

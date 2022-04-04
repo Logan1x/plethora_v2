@@ -98,19 +98,3 @@ export const postWishlistData = async (
     notify("Make sure you're logged in", "error");
   }
 };
-
-export const removeFromCartUtilFunc = (id, token) => {
-  return axios.delete(`/api/user/cart/${id}`, {
-    headers: {
-      authorization: token,
-    },
-  });
-};
-
-export const removeFromWishlistUtilFunc = (id, token) => {
-  return axios.delete(`/api/user/wishlist/${id}`, {
-    headers: {
-      authorization: token,
-    },
-  });
-};
