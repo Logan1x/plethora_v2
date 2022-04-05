@@ -1,6 +1,8 @@
-import { createContext, useContext, useState } from "react";
-import { loginUtility } from "../utils/utilAuthFuncs";
 import { useNavigate } from "react-router-dom";
+import { createContext, useContext, useState } from "react";
+
+import { loginUtility } from "../utils/utilAuthFuncs";
+import { notify } from "../utils/utilToastFuncs";
 
 const AuthContext = createContext();
 
@@ -23,12 +25,14 @@ const AuthProvider = ({ children }) => {
             user: response.data.foundUser,
           })
         );
-        navigate("/");
+        navigate("/products");
         setToken(response.data.encodedToken);
         setCurrUser(response.data.foundUser);
+        notify("Logged in successfully!", "success");
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      notify("Please try again", "error");
     }
   };
 
@@ -36,12 +40,13 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("loginItems");
     setToken(null);
     setCurrUser(null);
-    navigate("/login");
+    navigate("/");
+    notify("Logged out successfully", "success");
   };
 
   return (
     <AuthContext.Provider
-      value={{ loginHandler, logoutHandler, token, currUser }}
+      value={{ loginHandler, logoutHandler, token, currUser, notify }}
     >
       {children}
     </AuthContext.Provider>

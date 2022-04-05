@@ -7,6 +7,7 @@
 @import url(./styles/auth.css);
 @import url(./styles/products.css);
 @import url(./styles/cart.css);
+@import url(./styles/notFound.css);
 
 :root {
   --color-foreground: #111827;
@@ -41,7 +42,7 @@ body {
   margin: auto 3rem;
   grid-template-areas:
     "header "
-    "main "
+    "main"
     "footer ";
 }
 
