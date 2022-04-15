@@ -4,10 +4,8 @@ import {
   filterByPriceRange,
 } from "../utils/utilFilterFuncs";
 
-// import { updateCartItemQuantity } from "../utils/utilCartFuncs";
 
 import { useDataContext } from "../contexts/dataContext";
-// import { updateCartItemQuantity } from "../utils/utilCartWishFuncs";
 
 export const useFilterHook = () => {
   const { state } = useDataContext();
@@ -16,7 +14,6 @@ export const useFilterHook = () => {
   let filteredData = filterByRating(sortedData, state.filterByRating);
   filteredData = filterByPriceRange(filteredData, state.filterByPriceRange);
 
-  // const cartItemQuant = updateCartItemQuantity(state.cartData, id, incOrDec);
 
   return { filteredData };
 };
