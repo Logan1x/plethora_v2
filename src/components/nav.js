@@ -12,7 +12,7 @@ export default function Nav() {
     <nav className="nav">
       <div className="nav-title">
         <p>
-          <a href="/"> Plethora </a>
+          <Link to="/"> Plethora </Link>
           <span className="text-sm">v2.0</span>
         </p>
       </div>

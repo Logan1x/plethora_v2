@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/authContext";
 
 export default function Login() {
-  const [email, setEmail] = useState("khu@gmail.com");
-  const [password, setPassword] = useState("khush");
+  const [udata, setUdata] = useState({ email: "", password: "" });
 
   const { loginHandler } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    loginHandler(email, password);
+    loginHandler(udata);
+    setUdata({ email: "", password: "" });
   };
 
   return (
@@ -26,8 +26,8 @@ export default function Login() {
             id="email"
             className="form-control"
             placeholder="Ex: example@example.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={udata.email}
+            onChange={(e) => setUdata({ ...udata, email: e.target.value })}
             required
           />
           <label htmlFor="password">Password</label>
@@ -37,17 +37,35 @@ export default function Login() {
             id="password"
             className="form-control"
             placeholder="Ex: *******"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={udata.password}
+            onChange={(e) => setUdata({ ...udata, password: e.target.value })}
             required
           />
           <div className="form-group-flex">
-            <input type="checkbox" name="remember" id="remember" value="1" />
-            <label htmlFor="remember">Remember me</label>
-            <small>Forgot your password?</small>
+            <input
+              type="checkbox"
+              name="remember"
+              id="remember"
+              value="1"
+              checked
+            />
+            <label className="text-small" htmlFor="remember">
+              Remember me
+            </label>
+            <small className="text-small">Forgot your password?</small>
           </div>
           <button type="submit" className="auth-btn">
             Login
+          </button>
+
+          <button
+            className="auth-test-btn"
+            type="button"
+            onClick={() =>
+              loginHandler({ email: "khu@gmail.com", password: "khush" })
+            }
+          >
+            Test Credentials
           </button>
           <div className="form-redirect">
             <Link to="/signup">Dont have account? Sign up here</Link>

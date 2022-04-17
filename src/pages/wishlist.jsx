@@ -80,7 +80,11 @@ export default function Wishlist() {
       ) : (
         <div className="cart-title-center">
           <h3>Your wishlist is empty</h3>
-          <img className="notFound-image" src={notFoundImage} alt="" />
+          <img
+            className="notFound-image"
+            src={notFoundImage}
+            alt="product in wishlist"
+          />
         </div>
       )}
     </div>

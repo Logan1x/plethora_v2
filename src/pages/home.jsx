@@ -54,6 +54,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <footer>
+        Developed by <a href="https://logan1x.github.io">Logan1x</a>{" "}
+      </footer>
     </main>
   );
 }

@@ -22,6 +22,14 @@ export const filterByRating = (data, filterByRating) => {
   }
 };
 
+export const filterByCategory = (data, filterByCategory) => {
+  if (filterByCategory) {
+    return data.filter((product) => product.categoryName === filterByCategory);
+  } else {
+    return data;
+  }
+};
+
 export const filterByPriceRange = (data, filterByPriceRange) => {
   if (filterByPriceRange) {
     return data.filter(
