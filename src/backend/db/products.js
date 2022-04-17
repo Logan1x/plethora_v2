@@ -16,7 +16,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "Adult Leisure MTB Cycle",
+    title: "Rockrider ST20 HF",
     imgSrc: "https://plethora-project.netlify.app/assets/productImage2.jpg",
     rating: "3.8",
     price: "15000",
@@ -24,7 +24,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "Adult Leisure MTB Cycle",
+    title: "Adult Hybrid Cycle",
     imgSrc: "https://plethora-project.netlify.app/assets/productImage3.jpg",
     rating: "4.6",
     price: "6000",
@@ -32,7 +32,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "Adult Leisure MTB Cycle",
+    title: "Riverside 120",
     imgSrc: "https://plethora-project.netlify.app/assets/productImage4.jpg",
     rating: "2.9",
     price: "8000",
@@ -40,7 +40,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "Adult Leisure MTB Cycle",
+    title: "Kick Scooter Town",
     imgSrc:
       "https://plethora-project.netlify.app/assets/cycle-new-arrival-1.jpg",
     rating: "4.9",
@@ -49,7 +49,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "Adult Leisure MTB Cycle",
+    title: "Kids Mini Monster Cycle",
     imgSrc:
       "https://plethora-project.netlify.app/assets/cycle-new-arrival-3.jpeg",
     rating: "1.1",
