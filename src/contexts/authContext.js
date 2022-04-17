@@ -13,9 +13,9 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorageToken?.token);
   const [currUser, setCurrUser] = useState(localStorageToken?.user);
 
-  const loginHandler = async (email, password) => {
+  const loginHandler = async (udata) => {
     try {
-      const response = await loginUtility(email, password);
+      const response = await loginUtility(udata);
 
       if (response.status === 200 || response.status === 201) {
         localStorage.setItem(

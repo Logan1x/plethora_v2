@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/authContext";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [udata, setUdata] = useState({ email: "", password: "" });
 
   const { loginHandler } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    loginHandler(email, password);
+    loginHandler(udata);
   };
 
   return (
@@ -27,7 +26,7 @@ export default function Login() {
             className="form-control"
             placeholder="Ex: example@example.com"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setUdata({ ...udata, email: e.target.value })}
             required
           />
           <label htmlFor="password">Password</label>
@@ -38,7 +37,7 @@ export default function Login() {
             className="form-control"
             placeholder="Ex: *******"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setUdata({ ...udata, password: e.target.value })}
             required
           />
           <div className="form-group-flex">
