@@ -11,6 +11,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     loginHandler(udata);
+    setUdata({ email: "", password: "" });
   };
 
   return (
@@ -25,7 +26,7 @@ export default function Login() {
             id="email"
             className="form-control"
             placeholder="Ex: example@example.com"
-            value={email}
+            value={udata.email}
             onChange={(e) => setUdata({ ...udata, email: e.target.value })}
             required
           />
@@ -36,7 +37,7 @@ export default function Login() {
             id="password"
             className="form-control"
             placeholder="Ex: *******"
-            value={password}
+            value={udata.password}
             onChange={(e) => setUdata({ ...udata, password: e.target.value })}
             required
           />

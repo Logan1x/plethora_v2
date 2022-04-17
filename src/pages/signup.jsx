@@ -11,6 +11,7 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     signupHandler(udata);
+    setUdata({ name: "", email: "", password: "" });
   };
 
   return (
@@ -25,6 +26,7 @@ export default function Signup() {
             id="name"
             className="form-control"
             placeholder="Ex: Khushal"
+            value={udata.name}
             onChange={(e) => {
               setUdata({ ...udata, name: e.target.value });
             }}
@@ -37,6 +39,7 @@ export default function Signup() {
             id="email"
             className="form-control"
             placeholder="Ex: Khush@plethora.app"
+            value={udata.email}
             onChange={(e) => {
               setUdata({ ...udata, email: e.target.value });
             }}
@@ -49,6 +52,7 @@ export default function Signup() {
             id="password"
             className="form-control"
             placeholder="Ex: *******"
+            value={udata.password}
             onChange={(e) => {
               setUdata({ ...udata, password: e.target.value });
             }}
