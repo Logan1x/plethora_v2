@@ -1,6 +1,7 @@
 import {
   getSortedData,
   filterByRating,
+  filterByCategory,
   filterByPriceRange,
 } from "../utils/utilFilterFuncs";
 
@@ -11,7 +12,8 @@ export const useFilterHook = () => {
 
   const sortedData = getSortedData(state.data, state.sortBy);
   let filteredData = filterByRating(sortedData, state.filterByRating);
+  filteredData = filterByCategory(filteredData, state.filterByCategory);
   filteredData = filterByPriceRange(filteredData, state.filterByPriceRange);
-  
+
   return { filteredData };
 };

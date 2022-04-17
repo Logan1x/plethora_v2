@@ -10,13 +10,16 @@ const dataReducerFunc = (state, action) => {
       return { ...state, sortBy: action.payload };
     case "FILTER_BY_RATING":
       return { ...state, filterByRating: action.payload };
+    case "FILTER_BY_CATEGORY":
+      return { ...state, filterByCategory: action.payload };
     case "FILTER_BY_PRICE_RANGE":
       return { ...state, filterByPriceRange: action.payload };
     case "CLEAR_FILTER":
       return {
         ...state,
-        filterByRating: null,
         sortBy: null,
+        filterByRating: null,
+        filterByCategory: null,
         filterByPriceRange: 15000,
       };
     default:
@@ -30,6 +33,7 @@ const initialState = {
   cartData: [],
   wishlistData: [],
   filterByRating: null,
+  filterByCategory: null,
   filterByPriceRange: 15000,
 };
 

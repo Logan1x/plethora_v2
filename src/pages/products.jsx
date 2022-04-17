@@ -66,6 +66,45 @@ export default function Products() {
           ></input>
         </div>
         <div>
+          <h4>Categories</h4>
+          <form action="">
+            <div>
+              <label>
+                <input
+                  type="checkbox"
+                  name="checkbox"
+                  value="adultCycles"
+                  onChange={(e) =>
+                    dispatch({
+                      type: "FILTER_BY_CATEGORY",
+                      payload: e.target.value,
+                    })
+                  }
+                  checked={state.filterByCategory === "adultCycles"}
+                />
+                Adult Cycles
+              </label>
+            </div>
+            <div>
+              <label>
+                <input
+                  type="checkbox"
+                  name="checkbox"
+                  value="kidsCycles"
+                  onChange={(e) =>
+                    dispatch({
+                      type: "FILTER_BY_CATEGORY",
+                      payload: e.target.value,
+                    })
+                  }
+                  checked={state.filterByCategory === "kidsCycles"}
+                />
+                Kids Cycles
+              </label>
+            </div>
+          </form>
+        </div>
+        <div>
           <h4>Rating</h4>
           <form action="">
             <div>
