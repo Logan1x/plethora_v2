@@ -60,6 +60,7 @@ export default function Login() {
 
           <button
             className="auth-test-btn"
+            type="button"
             onClick={() =>
               loginHandler({ email: "khu@gmail.com", password: "khush" })
             }
