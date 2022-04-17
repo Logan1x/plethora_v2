@@ -15,12 +15,26 @@ This project is made out of HTML, CSS and ReactJS. **If you love to contribute, 
 ## Tech Stack
 
 ### FrontEnd
-- HTML5
-- CSS3
-- ReactJS
+- React JS
+- React Context API + useReducer
+- React Router v6
+- Vanilla CSS integrated with [Libre UI](https://libreui.netlify.app/) Component Library
 
 ### BackEnd
 - MockBee
+
+## **Screens -**
+
+- Homepage
+- Product explore page
+- Filter Products based on Price, Rating
+- Cart Management
+- Wishlist Management
+- Authentication:
+  - User Signup
+  - User Login
+- 404 Error Page
+
 
         
         
@@ -33,7 +47,14 @@ This project is made out of HTML, CSS and ReactJS. **If you love to contribute, 
 ![signup](https://user-images.githubusercontent.com/10944610/154805769-19364dc4-192f-44f0-b116-28a413e44739.png)
 
 
+## **Want to contribute? Learn how to install and run locally ?**
 
+```
+$ git clone https://github.com/Logan1x/plethora_v2
+$ cd Glee
+$ npm install
+$ npm start
+```
 
 
 ### This Project was made with help of these contributors
