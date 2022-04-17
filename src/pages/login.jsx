@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/authContext";
 
 export default function Login() {
-  const [email, setEmail] = useState("khu@gmail.com");
-  const [password, setPassword] = useState("khush");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const { loginHandler } = useAuth();
 
@@ -42,12 +42,27 @@ export default function Login() {
             required
           />
           <div className="form-group-flex">
-            <input type="checkbox" name="remember" id="remember" value="1" />
-            <label htmlFor="remember">Remember me</label>
-            <small>Forgot your password?</small>
+            <input
+              type="checkbox"
+              name="remember"
+              id="remember"
+              value="1"
+              checked
+            />
+            <label className="text-small" htmlFor="remember">
+              Remember me
+            </label>
+            <small className="text-small">Forgot your password?</small>
           </div>
           <button type="submit" className="auth-btn">
             Login
+          </button>
+
+          <button
+            className="auth-test-btn"
+            onClick={() => loginHandler("khu@gmail.com", "khush")}
+          >
+            Test Credentials
           </button>
           <div className="form-redirect">
             <Link to="/signup">Dont have account? Sign up here</Link>

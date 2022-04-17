@@ -26,8 +26,16 @@ export default function Signup() {
             required
           />
           <div className="form-group-flex">
-            <input type="checkbox" name="remember" id="remember" value="1" />
-            <label htmlFor="remember">I accept all Terms & Conditions</label>
+            <input
+              type="checkbox"
+              name="remember"
+              id="remember"
+              value="1"
+              checked
+            />
+            <label htmlFor="remember" className="text-small">
+              I accept all Terms & Conditions
+            </label>
           </div>
           <button type="submit" className="auth-btn">
             Sign Up
