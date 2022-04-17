@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { createContext, useContext, useState } from "react";
 
-import { loginUtility } from "../utils/utilAuthFuncs";
+import { loginUtility, signupUtility } from "../utils/utilAuthFuncs";
 import { notify } from "../utils/utilToastFuncs";
 
 const AuthContext = createContext();
@@ -36,6 +36,29 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const signupHandler = async (udata) => {
+    try {
+      const response = await signupUtility(udata);
+
+      if (response.status === 200 || response.status === 201) {
+        localStorage.setItem(
+          "loginItems",
+          JSON.stringify({
+            token: response.data.encodedToken,
+            user: response.data.foundUser,
+          })
+        );
+        navigate("/products");
+        setToken(response.data.encodedToken);
+        setCurrUser(response.data.foundUser);
+        notify("Signed up successfully!", "success");
+      }
+    } catch (err) {
+      console.error(err);
+      notify("Please try again", "error");
+    }
+  };
+
   const logoutHandler = () => {
     localStorage.removeItem("loginItems");
     setToken(null);
@@ -46,7 +69,14 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ loginHandler, logoutHandler, token, currUser, notify }}
+      value={{
+        loginHandler,
+        signupHandler,
+        logoutHandler,
+        token,
+        currUser,
+        notify,
+      }}
     >
       {children}
     </AuthContext.Provider>

@@ -40,7 +40,7 @@ export default function Cart() {
                     return (
                       <div className="cart-card" key={item._id}>
                         <div className="cart-img">
-                          <img src={item.imgSrc} alt="" />
+                          <img src={item.imgSrc} alt="product in cart" />
                         </div>
                         <div className="cart-details">
                           <h3 className="cart-title">{item.title}</h3>
@@ -98,7 +98,7 @@ export default function Cart() {
                     </div>
                     <div className="cart-total-row">
                       <p>Discount</p>
-                      <p>-$999</p>
+                      <p>-$699</p>
                     </div>
                     <div className="cart-total-row">
                       <p>Delivary Charges</p>
@@ -106,7 +106,7 @@ export default function Cart() {
                     </div>
                     <div className="cart-total-row cart-final-amount">
                       <p>Total Amount</p>
-                      <p>${Number(totalPrice) - 900}</p>
+                      <p>${Number(totalPrice) - 600}</p>
                     </div>
                   </div>
                 </div>

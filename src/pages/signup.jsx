@@ -1,19 +1,45 @@
-import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { useAuth } from "../contexts/authContext";
+
 export default function Signup() {
+  const [udata, setUdata] = useState({ name: "", email: "", password: "" });
+
+  const { signupHandler } = useAuth();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    signupHandler(udata);
+  };
+
   return (
     <main className="container-auth">
       <div className="container-paint text-center">
         <h1>Signup</h1>
-        <form action="" className="form-group">
+        <form onSubmit={handleSubmit} className="form-group">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            className="form-control"
+            placeholder="Ex: Khushal"
+            onChange={(e) => {
+              setUdata({ ...udata, name: e.target.value });
+            }}
+            required
+          />
           <label htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
             id="email"
             className="form-control"
-            placeholder="Enter your email"
+            placeholder="Ex: Khush@plethora.app"
+            onChange={(e) => {
+              setUdata({ ...udata, email: e.target.value });
+            }}
             required
           />
           <label htmlFor="password">Password</label>
@@ -22,7 +48,10 @@ export default function Signup() {
             name="password"
             id="password"
             className="form-control"
-            placeholder="Enter your password"
+            placeholder="Ex: *******"
+            onChange={(e) => {
+              setUdata({ ...udata, password: e.target.value });
+            }}
             required
           />
           <div className="form-group-flex">

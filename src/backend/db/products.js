@@ -38,4 +38,22 @@ export const products = [
     price: "8000",
     categoryName: "cycle",
   },
+  {
+    _id: uuid(),
+    title: "Adult Leisure MTB Cycle",
+    imgSrc:
+      "https://plethora-project.netlify.app/assets/cycle-new-arrival-1.jpg",
+    rating: "4.9",
+    price: "1756",
+    categoryName: "cycle",
+  },
+  {
+    _id: uuid(),
+    title: "Adult Leisure MTB Cycle",
+    imgSrc:
+      "https://plethora-project.netlify.app/assets/cycle-new-arrival-3.jpeg",
+    rating: "1.1",
+    price: "600",
+    categoryName: "cycle",
+  },
 ];

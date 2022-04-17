@@ -5,3 +5,10 @@ export const loginUtility = async (email, password) =>
     email,
     password,
   });
+
+export const signupUtility = async (udata) =>
+  axios.post("/api/auth/signup/", {
+    email: udata.email,
+    password: udata.password,
+    name: udata.name,
+  });

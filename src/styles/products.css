@@ -18,8 +18,9 @@
   position: relative;
 }
 
-.product-img img {
-  width: 100%;
+.product-img > img {
+  width: 18.75rem;
+  height: 18.75rem;
   object-fit: cover;
   border-radius: 0.4rem 0.4rem 0 0;
 }
