@@ -1,12 +1,14 @@
+import { Link } from "react-router-dom";
+import { useState } from "react";
+
 import { useDataContext } from "../contexts/dataContext";
 import { useFilterHook } from "../hooks/filterHook";
 import { useAuth } from "../contexts/authContext";
 
-import { Link } from "react-router-dom";
-
 export default function Products() {
   const { state, dispatch, postCartData, postWishlistData } = useDataContext();
   const { filteredData } = useFilterHook();
+  const [filterModal, setFilterModal] = useState("sidebar");
   const { token } = useAuth();
 
   const checkInCart = (id) => {
@@ -28,15 +30,27 @@ export default function Products() {
 
   return (
     <div className="container-aside-layout">
-      <aside className="sidebar">
+      <aside className={`${filterModal}`}>
         <div className="sidebar-heading">
           <h4>Filters</h4>
-          <p
-            className="clear-btn"
-            onClick={() => dispatch({ type: "CLEAR_FILTER" })}
-          >
-            clear
-          </p>
+          {filterModal === "sidebar" ? (
+            <p
+              className="clear-btn"
+              onClick={() => dispatch({ type: "CLEAR_FILTER" })}
+            >
+              clear
+            </p>
+          ) : (
+            <p
+              className="clear-btn"
+              onClick={() => {
+                dispatch({ type: "CLEAR_FILTER" });
+                setFilterModal("sidebar");
+              }}
+            >
+              clear & close
+            </p>
+          )}
         </div>
 
         <div>
@@ -63,7 +77,7 @@ export default function Products() {
                 payload: e.target.value,
               })
             }
-          ></input>
+          />
         </div>
         <div>
           <h4>Categories</h4>
@@ -186,8 +200,20 @@ export default function Products() {
             </div>
           </form>
         </div>
+        <div
+          className="apply-filter-btn"
+          onClick={() => setFilterModal("sidebar")}
+        >
+          Apply
+        </div>
       </aside>
       <main className="container-pages">
+        <div
+          className="filter-prod-btn"
+          onClick={() => setFilterModal("sidebar-sm")}
+        >
+          Filter Products
+        </div>
         <h3 className="product-title-left">
           <span>Showing All Results</span> (found {filteredData.length} results)
         </h3>
