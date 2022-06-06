@@ -1,10 +1,11 @@
-import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../contexts/authContext";
 import { useDataContext } from "../contexts/dataContext";
 
 export default function Nav() {
+  const [toggleNavCls, setToggleNavCls] = useState("nav-mobile-full-hidden");
   const { token, logoutHandler } = useAuth();
   const { state } = useDataContext();
 
@@ -16,6 +17,23 @@ export default function Nav() {
           <span className="text-sm">v2.0</span>
         </p>
       </div>
+      <p
+        className="nav-sm-menu-open"
+        onClick={() => setToggleNavCls((toggleNavCls) => "nav-mobile-full")}
+      >
+        <svg
+          className="w-6 h-6"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fillRule="evenodd"
+            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+            clipRule="evenodd"
+          />
+        </svg>
+      </p>
       <div className="nav-search">
         <input className="nav-search-input" type="text" />
         <svg
@@ -72,6 +90,78 @@ export default function Nav() {
             Login
           </Link>
         )}
+      </div>
+      <div className={`${toggleNavCls}`}>
+        <div>
+          <p
+            onClick={() =>
+              setToggleNavCls((toggleNavCls) => "nav-mobile-full-hidden")
+            }
+            className="nav-sm-menu-close"
+          >
+            <svg
+              className="svg-close-icon"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </p>
+        </div>
+        <div className="nav-mobile-full-links">
+          <Link
+            onClick={() => setToggleNavCls("nav-mobile-full-hidden")}
+            to="/"
+          >
+            {" "}
+            Home{" "}
+          </Link>
+          <Link
+            onClick={() => setToggleNavCls("nav-mobile-full-hidden")}
+            to="/products"
+          >
+            {" "}
+            Explore{" "}
+          </Link>
+          <Link
+            onClick={() => setToggleNavCls("nav-mobile-full-hidden")}
+            to="/cart"
+          >
+            {" "}
+            Cart{" "}
+          </Link>
+          <Link
+            onClick={() => setToggleNavCls("nav-mobile-full-hidden")}
+            to="/wishlist"
+          >
+            {" "}
+            Wishlist{" "}
+          </Link>
+          {token ? (
+            <a onClick={logoutHandler}>Logout</a>
+          ) : (
+            <div>
+              <Link
+                onClick={() => setToggleNavCls("nav-mobile-full-hidden")}
+                to="/login"
+              >
+                Login
+              </Link>
+              <Link
+                onClick={() => setToggleNavCls("nav-mobile-full-hidden")}
+                to="/register"
+              >
+                {" "}
+                Register{" "}
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </nav>
   );

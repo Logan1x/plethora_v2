@@ -18,6 +18,8 @@
   --color-text: #333;
   --color-bg-light-gray: #e5e7eb;
   --color-bg-dark-gray: #d1d5db;
+  --color-blue-light: #e0f2fe;
+  --color-blue-dark: #2563eb;
 }
 
 body {
@@ -28,6 +30,7 @@ body {
   background-color: var(--color-background);
   font-family: "Raleway", sans-serif;
   color: var(--color-text);
+  position: relative;
 }
 
 .form-control {

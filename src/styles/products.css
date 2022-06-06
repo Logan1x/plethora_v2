@@ -1,3 +1,27 @@
+.filter-prod-btn {
+  display: none;
+}
+
+.sidebar > .apply-filter-btn {
+  display: none;
+}
+
+.sidebar-sm {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  min-height: 100vh;
+  background: var(--color-blue-light);
+  color: var(--color-card-bg);
+  overflow: hidden;
+  padding: 1rem;
+  z-index: 1;
+}
+
 .product-card-parent {
   display: flex;
   justify-content: center;
@@ -107,4 +131,31 @@
 
 .clear-btn {
   cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .filter-prod-btn {
+    display: block;
+    background: var(--color-blue-light);
+    margin: 0 1rem;
+    padding: 0.3rem 0.5rem;
+    display: flex;
+    justify-content: center;
+    color: var(--color-blue-dark);
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .apply-filter-btn {
+    display: block;
+    background: var(--color-blue-light);
+    margin: 1rem;
+    padding: 0.3rem 0.5rem;
+    display: flex;
+    justify-content: center;
+    color: var(--color-blue-dark);
+    border: 1px solid var(--color-blue-dark);
+    border-radius: 0.3rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
 }
