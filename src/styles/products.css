@@ -104,6 +104,10 @@
   color: var(--color-background);
 }
 
+.product-go-to-cart:hover{
+  opacity: 80%;
+}
+
 .product-wishlist {
   width: 1.5rem;
   height: 1.5rem;
