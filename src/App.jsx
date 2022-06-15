@@ -12,6 +12,8 @@ import Signup from "./pages/signup";
 import Cart from "./pages/cart";
 import Wishlist from "./pages/wishlist";
 import NotFound from "./pages/notFound";
+import Checkout from "./pages/checkout";
+import PrivateRoute from "./components/privateRoute";
 
 function App() {
   return (
@@ -23,8 +25,30 @@ function App() {
         <Route path="/mockman" element={<Mockman />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
+        <Route
+          path="/cart"
+          element={
+            <PrivateRoute>
+              <Cart />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <PrivateRoute>
+              <Wishlist />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <PrivateRoute>
+              <Checkout />
+            </PrivateRoute>
+          }
+        />
         {/* 404 page */}
         <Route path="*" element={<NotFound />} />
       </Routes>
