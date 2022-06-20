@@ -14,6 +14,7 @@ import Wishlist from "./pages/wishlist";
 import NotFound from "./pages/notFound";
 import Checkout from "./pages/checkout";
 import PrivateRoute from "./components/privateRoute";
+import ProductDetail from "./pages/productDetail";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/productdetail/:pid" element={<ProductDetail />} />
         <Route path="/mockman" element={<Mockman />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -49,7 +51,6 @@ function App() {
             </PrivateRoute>
           }
         />
-        {/* 404 page */}
         <Route path="*" element={<NotFound />} />
       </Routes>
       {/* toast notification */}

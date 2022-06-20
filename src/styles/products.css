@@ -42,6 +42,8 @@
   position: relative;
 }
 
+
+
 .product-img > img {
   width: 18.75rem;
   height: 18.75rem;
@@ -55,6 +57,11 @@
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
+}
+
+.product-details > a{
+  color: var(--color-card-bg);
+  text-decoration: none;
 }
 
 .product-price-rating {

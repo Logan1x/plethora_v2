@@ -221,11 +221,16 @@ export default function Products() {
           {filteredData &&
             filteredData.map((product) => (
               <div className="product-card" key={product.id}>
-                <div className="product-img">
-                  <img src={product.imgSrc} alt="product" />
-                </div>
+                <Link to={`/productdetail/${product._id}`}>
+                  <div className="product-img">
+                    <img src={product.imgSrc} alt="product" />
+                  </div>
+                </Link>
+
                 <div className="product-details">
-                  <h3>{product.title}</h3>
+                  <Link to={`/productdetail/${product._id}`}>
+                    <h3>{product.title}</h3>
+                  </Link>
                   <div className="product-price-rating">
                     <div className="product-price">
                       <span>{product.price}Rs.</span>
