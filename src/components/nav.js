@@ -34,7 +34,8 @@ export default function Nav() {
           />
         </svg>
       </p>
-      <div className="nav-search">
+      {/* TODO: Work on Serach feature */}
+      {/* <div className="nav-search">
         <input className="nav-search-input" type="text" />
         <svg
           className="nav-search-icon"
@@ -49,7 +50,7 @@ export default function Nav() {
             clipRule="evenodd"
           ></path>
         </svg>
-      </div>
+      </div> */}
       <div className="nav-pills">
         <Link className="alert-badge" to="/wishlist">
           <svg
