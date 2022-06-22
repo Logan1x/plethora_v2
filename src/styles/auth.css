@@ -80,7 +80,6 @@
 .form-redirect a {
   font-size: small;
   color: var(--color-foreground);
-  text-decoration: none;
 }
 
 @media only screen and (max-width: 400px) {

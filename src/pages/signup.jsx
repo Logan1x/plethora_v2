@@ -66,8 +66,11 @@ export default function Signup() {
               value="1"
               checked
             />
-            <label htmlFor="remember" className="text-small">
-              I accept all Terms & Conditions
+            <label htmlFor="remember" className="text-small form-redirect">
+              I accept all{" "}
+              <a href="https://gist.github.com/maddisondesigns/73cf2b8f121135c9bd4d">
+                Terms & Conditions
+              </a>
             </label>
           </div>
           <button type="submit" className="auth-btn">
