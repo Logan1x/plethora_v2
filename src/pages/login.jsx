@@ -52,7 +52,6 @@ export default function Login() {
             <label className="text-small" htmlFor="remember">
               Remember me
             </label>
-            <small className="text-small">Forgot your password?</small>
           </div>
           <button type="submit" className="auth-btn">
             Login
