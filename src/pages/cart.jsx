@@ -58,12 +58,21 @@ export default function Cart() {
                               Quantity :
                             </p>
                             <div className="cart-quantity-btn">
-                              <button
-                                className="cart-quantity-btn-minus"
-                                onClick={() => decreaseItemQuantity(item._id)}
-                              >
-                                -
-                              </button>
+                              {item.qty > 1 ? (
+                                <button
+                                  className="cart-quantity-btn-minus"
+                                  onClick={() => decreaseItemQuantity(item._id)}
+                                >
+                                  -
+                                </button>
+                              ) : (
+                                <button
+                                  className="cart-quantity-btn-minus"
+                                  onClick={() => removeFromCart(item._id)}
+                                >
+                                  -
+                                </button>
+                              )}
                               <input type="text" value={item.qty} />
                               <button
                                 className="cart-quantity-btn-plus"

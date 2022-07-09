@@ -23,6 +23,7 @@ export default function Wishlist() {
       {state.wishlistData.length > 0 ? (
         <div className="container-main">
           <main className="container-pages">
+            <h1 className="cart-title-center">Your Wishlist</h1>
             <h3 className="product-title-left">
               <span>Showing All Results</span> (found{" "}
               {state.wishlistData.length} results)

@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import HeroImg from "../assets/hero-image.jpg";
+import CycleCategory1 from "../assets/cycle-new-arrival-1.jpg";
+import CycleCategory2 from "../assets/cycle-new-arrival-3.jpeg";
 
 export default function Home() {
   return (
@@ -12,20 +15,14 @@ export default function Home() {
         </Link>
       </div>
       <div className="hero-card-banner">
-        <img
-          src="https://plethora-project.netlify.app/assets/hero-image.jpg"
-          alt="homepage-banner"
-        />
+        <img src={HeroImg} alt="homepage-banner" />
       </div>
 
       <div className="hero-card-2">
         <div className="hero-card-new-arrivals">
           <div>
             <Link to="/products">
-              <img
-                src="https://plethora-project.netlify.app/assets/cycle-new-arrival-1.jpg"
-                alt="kids-cycle"
-              />
+              <img src={CycleCategory1} alt="kids-cycle" />
             </Link>
           </div>
           <div className="card-new-arrivals-content">
@@ -39,10 +36,7 @@ export default function Home() {
         <div className="hero-card-new-arrivals">
           <div>
             <Link to="/products">
-              <img
-                src="https://plethora-project.netlify.app/assets/cycle-new-arrival-3.jpeg"
-                alt="kids-tricycle"
-              />
+              <img src={CycleCategory2} alt="kids-tricycle" />
             </Link>
           </div>
           <div className="card-new-arrivals-content">
