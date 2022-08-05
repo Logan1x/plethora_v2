@@ -55,6 +55,7 @@ $ cd plethora_v2
 $ npm install
 $ npm start
 ```
+After completing above steps, add JWT secret token in `.env` file in project root folder.
 
 
 ### This Project was made with help of these contributors
