@@ -51,7 +51,7 @@ This project is made out of HTML, CSS and ReactJS. **If you love to contribute, 
 
 ```
 $ git clone https://github.com/Logan1x/plethora_v2
-$ cd Glee
+$ cd plethora_v2
 $ npm install
 $ npm start
 ```
