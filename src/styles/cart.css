@@ -139,6 +139,24 @@
   font-weight: bolder;
   border-top: 1px solid;
 }
+
+.cart-address-area{
+  display:flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cart-address-area .cart-address-content{
+  border: 1px solid;
+  border-radius: 0.3rem;
+  margin: 0 0.3rem;
+}
+
+.cart-address-area .cart-address-name{
+  font-weight: bold;
+}
+
 .cart-checkout button {
   background-color: var(--color-foreground);
   color: var(--color-background);

@@ -119,6 +119,16 @@ export default function Cart() {
                     </div>
                   </div>
                 </div>
+                <div className="cart-address">
+                  <h3>Delivery address</h3>
+                <div className="cart-address-area">
+                  <input type="radio" name="" id="" checked />
+                  <div className="cart-address-content">
+                    <p className="cart-address-name">Khushal Sharma</p>
+                    <p className="cart-address-full">15 D Block, Sector 9, Udaipur, 313002</p>
+                  </div>
+                </div>
+                </div>
                 <div className="cart-btn cart-checkout">
                   <button onClick={cartCheckoutNotify}>Checkout</button>
                 </div>
