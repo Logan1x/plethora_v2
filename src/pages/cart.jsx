@@ -1,14 +1,17 @@
+/* eslint-disable no-undef */
 import { useState, useEffect } from "react";
 import { useDataContext } from "../contexts/dataContext";
-import {useAuth} from "../contexts/authContext";
+import { useAuth } from "../contexts/authContext";
 import { cartCheckoutNotify } from "../utils/utilCartWishFuncs";
 import notFoundImage from "../assets/undraw_refreshing_beverage_td3r.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const { state, removeFromCart, increaseItemQuantity, decreaseItemQuantity } =
     useDataContext();
 
   const { currUser } = useAuth();
+  const navigate = useNavigate();
 
   const [cartData, setCartData] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -24,57 +27,42 @@ export default function Cart() {
     }
   };
 
-  const RAZORPAY_URL = "https://checkout.razorpay.com/v1/checkout.js";
-
-  const handleLoadScript = (src) => {
-    return new Promise((resolve, reject) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.onload = () => {
-        resolve(true);
-      };
-      script.onerror = () => {
-        reject(false);
-      };
-      document.body.appendChild(script);
-    });
+  const options = {
+    key: "rzp_test_7L7CKsewpiYyvr", // Enter the Key ID generated from the Dashboard
+    amount: (Number(totalPrice) - 600) * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    currency: "INR",
+    name: "Plethora Corp",
+    description: "Order Transaction",
+    image: "https://i.imgur.com/3ipeWqW.png",
+    handler: function (response) {
+      cartCheckoutNotify(response.razorpay_payment_id);
+      state.cartData = [];
+      navigate("/products");
+    },
+    prefill: {
+      name: "Khushal Sharma",
+      email: "sharmakhushal78@gmail.com",
+      contact: "8112273521",
+    },
+    notes: {
+      address: "Plethora Corporate Office",
+    },
+    theme: {
+      color: "#3399cc",
+    },
   };
 
-  const handleShowRazorPay = async () => {
-		const response = await handleLoadScript(RAZORPAY_URL);
-
-		if (!response) {
-			cartCheckoutNotify()
-			return;
-		}
-
-		var options = {
-			key: process.env.REACT_APP_RZP_KEY,
-			amount: (Number(totalPrice) - 600) * 100,
-			currency: "INR",
-			name: "Bookery",
-			description: "Thank you for shopping!",
-			image: notFoundImage,
-
-			handler: async function (response) {
-				const { razorpay_payment_id } = await response;
-				// const order = {
-				// 	razorpayPaymentId: razorpay_payment_id,
-				// 	...checkoutData,
-				// };
-				// placeOrder(order);
-			},
-			prefill: {
-				name: `${currUser?.name} ${currUser?.lastName}`,
-				email: currUser?.email,
-				contact: currUser?.phoneNumber,
-			},
-			theme: { color: "#3399cc" },
-		};
-
-		const paymentObject = new Razorpay(options);
-		paymentObject.open();
-	};
+  // eslint-disable-next-line no-use-before-define
+  const rzp1 = new Razorpay(options);
+  rzp1.on("payment.failed", function (response) {
+    alert(response.error.code);
+    alert(response.error.description);
+    alert(response.error.source);
+    alert(response.error.step);
+    alert(response.error.reason);
+    alert(response.error.metadata.order_id);
+    alert(response.error.metadata.payment_id);
+  });
 
   useEffect(() => {
     setCartData(getCartData());
@@ -175,16 +163,18 @@ export default function Cart() {
                 </div>
                 <div className="cart-address">
                   <h3>Delivery address</h3>
-                <div className="cart-address-area">
-                  <input type="radio" name="" id="" checked />
-                  <div className="cart-address-content">
-                    <p className="cart-address-name">{`${currUser.firstName} ${currUser.lastName}`}</p>
-                    <p className="cart-address-full">15 D Block, Sector 9, Udaipur, 313002</p>
+                  <div className="cart-address-area">
+                    <input type="radio" name="" id="" checked />
+                    <div className="cart-address-content">
+                      <p className="cart-address-name">{`${currUser.firstName} ${currUser.lastName}`}</p>
+                      <p className="cart-address-full">
+                        15 D Block, Sector 9, Udaipur, 313002
+                      </p>
+                    </div>
                   </div>
                 </div>
-                </div>
                 <div className="cart-btn cart-checkout">
-                  <button onClick={handleShowRazorPay}>Checkout</button>
+                  <button onClick={() => rzp1.open()}>Checkout</button>
                 </div>
               </div>
             </div>

@@ -1,8 +1,8 @@
 import { notify } from "./utilToastFuncs";
 import axios from "axios";
 
-export const cartCheckoutNotify = () => {
-  notify("Paisa laya?", "success", "🤨");
+export const cartCheckoutNotify = (orderID) => {
+  notify(`Order Succefully Placed : ${orderID}`, "success", "🎊");
 };
 
 export const removeFromCartUtilFunc = (id, token) => {
