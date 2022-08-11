@@ -30,6 +30,7 @@ This project is made out of HTML, CSS and ReactJS. **If you love to contribute, 
 - Filter Products based on Price, Rating
 - Cart Management
 - Wishlist Management
+- Checkout(Razorpay mock payment gateway)
 - Authentication:
   - User Signup
   - User Login
